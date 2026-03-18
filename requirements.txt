@@ -1,4 +1,5 @@
 fastapi
+endee
 uvicorn
 pydantic
 pydantic-settings
