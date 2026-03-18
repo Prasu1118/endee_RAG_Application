@@ -1,0 +1,93 @@
+2026-03-18 09:17:40.730 | INFO     | __main__:run:15 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:20:31.168 | INFO     | __main__:run:15 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:22:46.347 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:29:18.031 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:41:43.516 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:41:52.652 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:42:07.315 | WARNING  | app.retriever.vector_store:search:66 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 09:42:20.491 | WARNING  | app.retriever.vector_store:search:66 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 09:42:27.061 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:42:54.910 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 09:43:08.810 | WARNING  | app.retriever.vector_store:search:66 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 09:43:22.012 | WARNING  | app.retriever.vector_store:search:66 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 09:58:30.408 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 10:12:06.474 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 10:20:51.614 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 10:21:23.577 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 10:21:23.581 | INFO     | app.api.main:upload_file:68 - Scheduling background indexing for: abstract_11.pdf
+2026-03-18 10:21:23.587 | INFO     | app.ingestion.pipeline:process_file:8 - Processing file: abstract_11.pdf
+2026-03-18 10:21:23.783 | INFO     | app.ingestion.pipeline:process_file:12 - Created 1 chunks from abstract_11.pdf
+2026-03-18 10:21:23.787 | INFO     | app.generator.embeddings:get_model:9 - Initializing SentenceTransformer model (all-MiniLM-L6-v2) - This may take a moment...
+2026-03-18 10:49:41.977 | WARNING  | app.retriever.vector_store:insert:51 - Vector DB Server unavailable, using local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/upsert (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 10:49:41.995 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 10:49:46.093 | WARNING  | app.retriever.vector_store:search:66 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 10:49:46.636 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 10:49:46.637 | INFO     | app.api.main:upload_file:68 - Scheduling background indexing for: Prasannakumar_Tap_Resume.pdf
+2026-03-18 10:49:46.637 | INFO     | app.ingestion.pipeline:process_file:8 - Processing file: Prasannakumar_Tap_Resume.pdf
+2026-03-18 10:49:46.692 | INFO     | app.ingestion.pipeline:process_file:12 - Created 2 chunks from Prasannakumar_Tap_Resume.pdf
+2026-03-18 10:49:50.815 | WARNING  | app.retriever.vector_store:insert:51 - Vector DB Server unavailable, using local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/upsert (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 10:49:54.995 | WARNING  | app.retriever.vector_store:insert:51 - Vector DB Server unavailable, using local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/upsert (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 10:52:14.764 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 10:52:42.061 | WARNING  | app.retriever.vector_store:search:66 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 10:53:05.629 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 10:53:05.629 | INFO     | app.api.main:upload_file:68 - Scheduling background indexing for: abstract_11.pdf
+2026-03-18 10:53:05.631 | INFO     | app.ingestion.pipeline:process_file:8 - Processing file: abstract_11.pdf
+2026-03-18 10:53:05.674 | INFO     | app.ingestion.pipeline:process_file:12 - Created 1 chunks from abstract_11.pdf
+2026-03-18 10:53:05.674 | INFO     | app.generator.embeddings:get_model:9 - Initializing SentenceTransformer model (all-MiniLM-L6-v2) - This may take a moment...
+2026-03-18 11:02:07.461 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 11:19:42.236 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 11:19:42.984 | INFO     | app.retriever.vector_store:__init__:25 - VectorStore Initialized. Local fallback path: D:\endee-rag-ai\local_vector_store.json
+2026-03-18 11:21:52.769 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:21:52.777 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:21:56.389 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:21:56.397 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:21:59.384 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:21:59.392 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:02.390 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:02.399 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:05.388 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:05.395 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:08.378 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:08.380 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:11.389 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:11.396 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:14.389 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:14.394 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:17.383 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:17.388 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:20.377 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:20.379 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:23.392 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:23.403 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:26.392 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:26.396 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:29.379 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:29.384 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:32.385 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:32.389 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:35.390 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:35.395 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:38.396 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:38.411 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:41.701 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:41.705 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:44.402 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:44.407 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:47.384 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:47.389 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:50.388 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:22:50.396 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:23:41.388 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:23:41.400 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:24:41.447 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:24:41.453 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:25:41.377 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:25:41.381 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 11:26:14.732 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 11:32:53.318 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 11:32:54.498 | INFO     | app.retriever.vector_store:__init__:25 - VectorStore Initialized. Local fallback path: D:\endee-rag-ai\local_vector_store.json
+2026-03-18 11:38:16.731 | WARNING  | app.retriever.vector_store:search:73 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 11:38:16.734 | DEBUG    | app.retriever.vector_store:_get_local_storage:32 - Loaded 3 items from local fallback.
+2026-03-18 11:42:05.218 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 11:42:57.410 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 11:42:58.129 | INFO     | app.retriever.vector_store:__init__:25 - VectorStore Initialized. Local fallback path: D:\endee-rag-ai\local_vector_store.json

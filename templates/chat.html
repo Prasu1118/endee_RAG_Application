@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise AI Knowledge Assistant | Endee RAG</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="toast-container"></div>
+
+    <div class="app-shell">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="branding">
+                <div class="logo-icon">E</div>
+                <div class="logo-text">
+                    <h1 style="font-size: 16px; font-weight: 700;">Endee AI</h1>
+                    <p style="font-size: 10px; color: var(--text-mute);">Enterprise RAG Engine</p>
+                </div>
+            </div>
+
+            <div class="dashboard-stats">
+                <p class="section-label">System Overview</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-docs">0</span>
+                        <span class="stat-label">Documents</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-chunks">0</span>
+                        <span class="stat-label">Chunks</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-feed">
+                <p class="section-label">Recent Activity</p>
+                <div class="activity-list" id="activity-log">
+                    <div class="activity-item">System initialized...</div>
+                </div>
+            </div>
+
+            <div class="suggested-queries">
+                <p class="section-label">Suggested Queries</p>
+                <div class="suggested-list" id="suggestions">
+                    <div class="suggested-item" onclick="autoFill('Summary of the document?')">What are the main key points of this document?</div>
+                    <div class="suggested-item" onclick="autoFill('Any legal risks?')">Are there any specific risks or liabilities mentioned?</div>
+                </div>
+            </div>
+
+            <div style="margin-top: auto;">
+                <button class="upload-btn-mini" onclick="document.getElementById('file-upload').click()" id="upload-trigger-btn">
+                    <span>📄 Select Document</span>
+                </button>
+                <input type="file" id="file-upload" style="display: none;" onchange="handleFileSelect()" />
+            </div>
+        </aside>
+
+        <!-- Main Core -->
+        <div class="main-content">
+            <header>
+                <div class="status-indicator">
+                    <span class="dot" id="online-dot"></span>
+                    <span id="conn-text">System Active</span>
+                </div>
+                <div id="file-status" style="font-size: 13px; color: var(--text-mute);"></div>
+                <button class="upload-btn-mini" onclick="clearChat()">🗑️ Reset Session</button>
+            </header>
+
+            <main class="chat-viewport" id="chat-viewport">
+                <div class="message bot">
+                    Hello! I am your AI Knowledge Assistant. Upload documents or ask any question to begin.
+                    <span class="timestamp">Just now</span>
+                </div>
+            </main>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="user-input" placeholder="Enter your query..." autocomplete="off">
+                    <button class="action-btn" id="send-btn" onclick="handleSendMessage()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </div>
+                <div id="typing-indicator" style="display: none; padding: 10px 0;">
+                    <div class="typing"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const viewport = document.getElementById('chat-viewport');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const fileInput = document.getElementById('file-upload');
+
+        // Toast System
+        function showToast(msg, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `<span>${type === 'success' ? '✔' : '✖'}</span> ${msg}`;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        // File Selection handling
+        function handleFileSelect() {
+            const file = fileInput.files[0];
+            if (file) {
+                showToast(`File selected: ${file.name}. Indexing started...`);
+                triggerUpload(file);
+            }
+        }
+
+        const API_KEY = "{{ api_key }}";
+
+        // Dashboard Updates
+        async function updateDashboard() {
+            try {
+                const [statsRes, activityRes] = await Promise.all([
+                    fetch('/dashboard/stats', { headers: { 'X-API-Key': API_KEY } }),
+                    fetch('/dashboard/activity', { headers: { 'X-API-Key': API_KEY } })
+                ]);
+
+                const stats = await statsRes.json();
+                const activity = await activityRes.json();
+
+                // Update Stats
+                document.getElementById('stat-docs').innerText = stats.total_documents;
+                document.getElementById('stat-chunks').innerText = stats.total_chunks;
+                
+                // Update Activity Feed
+                const log = document.getElementById('activity-log');
+                log.innerHTML = '';
+                activity.activities.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = `activity-item activity-type-${item.type}`;
+                    div.innerHTML = `<span class="activity-time">${item.timestamp}</span><span class="activity-msg">${item.message}</span>`;
+                    log.appendChild(div);
+                });
+
+                // Indexing status indicator
+                const onlineDot = document.getElementById('online-dot');
+                const connText = document.getElementById('conn-text');
+                if (stats.is_indexing) {
+                    onlineDot.style.background = 'var(--primary)';
+                    onlineDot.style.boxShadow = '0 0 12px var(--primary)';
+                    connText.innerText = "Indexing Documents...";
+                    document.getElementById('upload-trigger-btn').disabled = true;
+                } else {
+                    onlineDot.style.background = 'var(--success)';
+                    onlineDot.style.boxShadow = '0 0 12px var(--success)';
+                    connText.innerText = "System Active";
+                    document.getElementById('upload-trigger-btn').disabled = false;
+                }
+
+            } catch (err) {
+                console.error("Dashboard sync failed", err);
+            }
+        }
+
+        // Poll dashboard every 3 seconds
+        setInterval(updateDashboard, 3000);
+        updateDashboard();
+
+        async function triggerUpload(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const response = await fetch('/upload', { 
+                    method: 'POST', 
+                    body: formData,
+                    headers: { 'X-API-Key': API_KEY }
+                });
+                
+                if (!response.ok) throw new Error("Upload failed");
+                
+                const result = await response.json();
+                showToast("Document upload received. Processing...");
+                appendBotResponse(`I'm currently indexing **${file.name}**. I'll let you know when it's ready for questions.`);
+                
+                // Immediate update
+                updateDashboard();
+            } catch (err) {
+                showToast("Upload failed. Please try again.", "error");
+            }
+        }
+
+        // Chat Interaction
+        function appendMessage(role, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${role}`;
+            msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+            
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            msgDiv.innerHTML += `<span class="timestamp">${time}</span>`;
+            
+            viewport.appendChild(msgDiv);
+            viewport.scrollTop = viewport.scrollHeight;
+            return msgDiv;
+        }
+
+        async function handleSendMessage() {
+            const q = userInput.value.trim();
+            if (!q) return;
+
+            appendMessage('user', q);
+            userInput.value = '';
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+            document.getElementById('typing-indicator').style.display = 'block';
+
+            let botMsgDiv = appendMessage('bot', '');
+            let fullText = "";
+
+            try {
+                const response = await fetch('/ask/stream', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-API-Key': API_KEY
+                    },
+                    body: JSON.stringify({ q })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                
+                document.getElementById('typing-indicator').style.display = 'none';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value);
+                    fullText += chunk;
+                    
+                    // Basic Markdown rendering for headers and bold
+                    let rendered = fullText
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/^### (.*$)/gm, '<h3 style="margin-top:10px">$1</h3>')
+                        .replace(/^## (.*$)/gm, '<h2 style="margin-top:10px">$1</h2>')
+                        .replace(/\[Source: (.*?)\]/g, '<span class="citation">$1</span>');
+                        
+                    botMsgDiv.querySelector('span.timestamp').insertAdjacentHTML('beforebegin', rendered);
+                    // Just update content, keep timestamp at bottom
+                    const timestamp = botMsgDiv.querySelector('.timestamp');
+                    botMsgDiv.innerHTML = rendered + timestamp.outerHTML;
+                    
+                    viewport.scrollTop = viewport.scrollHeight;
+                }
+
+            } catch (err) {
+                showToast("Communication error", "error");
+                botMsgDiv.innerHTML = "Sorry, I lost connection to the brain. Please try again.";
+            } finally {
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                document.getElementById('typing-indicator').style.display = 'none';
+                userInput.focus();
+            }
+        }
+
+        function autoFill(text) {
+            userInput.value = text;
+            userInput.focus();
+        }
+
+        function clearChat() {
+            viewport.innerHTML = `<div class="message bot">Session reset. How can I help you? <span class="timestamp">Just now</span></div>`;
+            showToast("Session cleared");
+        }
+
+        userInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSendMessage();
+            }
+        });
+
+        function appendBotResponse(text) {
+            appendMessage('bot', text);
+        }
+    </script>
+</body>
+</html>
