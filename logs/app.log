@@ -91,3 +91,19 @@
 2026-03-18 11:42:05.218 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
 2026-03-18 11:42:57.410 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
 2026-03-18 11:42:58.129 | INFO     | app.retriever.vector_store:__init__:25 - VectorStore Initialized. Local fallback path: D:\endee-rag-ai\local_vector_store.json
+2026-03-18 11:52:33.355 | INFO     | __main__:run:23 - Starting Enterprise RAG Platform on http://localhost:5000
+2026-03-18 11:52:34.042 | INFO     | app.retriever.vector_store:__init__:25 - VectorStore Initialized. Local fallback path: D:\endee-rag-ai\local_vector_store.json
+2026-03-18 11:56:38.866 | WARNING  | app.retriever.vector_store:search:73 - Vector DB Server unavailable, searching local fallback. Error: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/v1/index/rag_docs/query (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8080): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-18 11:56:38.870 | DEBUG    | app.retriever.vector_store:_get_local_storage:32 - Loaded 3 items from local fallback.
+2026-03-18 12:00:25.878 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 12:00:25.881 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 12:00:28.886 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 12:00:28.888 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 12:00:31.887 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 12:00:31.889 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 12:00:33.837 | WARNING  | app.middleware.auth:get_api_key:16 - APP_API_KEY not set. Authentication is disabled.
+2026-03-18 12:00:33.838 | INFO     | app.api.main:upload_file:72 - Scheduling background indexing for: abstract_11.pdf
+2026-03-18 12:00:33.839 | INFO     | app.ingestion.pipeline:process_file:11 - Processing bytes for file: abstract_11.pdf
+2026-03-18 12:00:33.874 | INFO     | app.ingestion.pipeline:process_file:17 - Created 1 chunks from abstract_11.pdf
+2026-03-18 12:00:33.874 | DEBUG    | app.ingestion.pipeline:process_file:22 - Indexing chunk 0/1 for abstract_11.pdf
+2026-03-18 12:00:33.874 | INFO     | app.generator.embeddings:get_model:9 - Initializing SentenceTransformer model (all-MiniLM-L6-v2) - This may take a moment...
